@@ -1,5 +1,4 @@
 <template>
-  
 <nav class="navbar container is-fixed-top is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://bulma.io">
@@ -17,7 +16,6 @@
     <div class="navbar-start">
       <router-link to="/"  class="navbar-item" >Home</router-link>
       <router-link to="/about"  class="navbar-item" >About</router-link>
-      <router-link to="/feed"  class="navbar-item" >Feed</router-link>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -48,9 +46,9 @@
           <a class="button">
             <strong>Sign up</strong>
           </a>
-            <router-link to="/login"  class="button is-light" >
-                Log in
-            </router-link>
+          <a class="button is-dark">
+            <strong>Log In</strong>
+          </a>
         </div>
       </div>
     </div>
