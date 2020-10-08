@@ -46,9 +46,9 @@
           <a class="button">
             <strong>Sign up</strong>
           </a>
-          <a class="button is-dark">
-            <strong>Log In</strong>
-          </a>
+            <router-link to="/login"  class="button is-light" >
+                Log in
+            </router-link>
         </div>
       </div>
     </div>
