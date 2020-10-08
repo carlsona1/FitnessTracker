@@ -1,9 +1,8 @@
 <template>
 <nav class="navbar container is-fixed-top is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="../assets/logo.png" height="28">
-    </a>
+    <router-link to="/"  class="navbar-item" ><i class="fa fa-fire" aria-hidden="true"></i></router-link>
+    
 
     <a role="button" class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="isActive = !isActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -14,38 +13,15 @@
 
   <div id="navbarBasicExample" class="navbar-menu "  :class="{ 'is-active': isActive }">
     <div class="navbar-start">
-      <router-link to="/"  class="navbar-item" >Home</router-link>
-      <router-link to="/about"  class="navbar-item" >About</router-link>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+      <router-link to="/"  class="navbar-item" >FuelBurner</router-link>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button">
-            <strong>Sign up</strong>
-          </a>
+          <router-link to="/signup"  class="button is-success" >
+            Sign up
+          </router-link>
             <router-link to="/login"  class="button is-light" >
                 Log in
             </router-link>

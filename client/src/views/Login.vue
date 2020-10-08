@@ -2,6 +2,7 @@
 
 <div class="level section">
     <div class="level-item">
+        <div class="box">
         <form>
             <div class="field">
             <p class="control has-icons-left has-icons-right">
@@ -30,8 +31,10 @@
             </p>
             </div>
         </form>
+        </div>
     </div>
 </div>
+
 </template>
 
 <script>

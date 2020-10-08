@@ -1,12 +1,11 @@
 <template>
   <div class="home">
-    <h1>Welcome to our home page</h1>
+    <h1>Welcome to</h1>
 
-    <h1 class="title">
-        Hello World
-      </h1>
+    <h2 class="title is-2">FuelBurner | Fitness Tracker</h2>
+        
       <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
+        A new kind of exercise app 
       </p>
       
   </div>
