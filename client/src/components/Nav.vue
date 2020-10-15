@@ -14,19 +14,12 @@
   <div id="navbarBasicExample" class="navbar-menu "  :class="{ 'is-active': isActive }">
     <div class="navbar-start">
       <router-link to="/"  class="navbar-item" >FuelBurner</router-link>
+      <router-link to="/feed"  class="navbar-item" >Feed</router-link>
     </div>
-
+     
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
-          <router-link to="/feed"  class="navbar-item" >Feed</router-link>
-          <router-link to="/signup"  class="button is-success" >
-            Sign up
-          </router-link>
-            <router-link to="/login"  class="button is-light" >
-                Log in
-            </router-link>
-        </div>
+        <LoginBadge />
       </div>
     </div>
   </div>
@@ -36,11 +29,15 @@
 </template>
 
 <script>
+import LoginBadge from "@/components/LoginBadge";
 export default {
   data: ()=> ({
       isActive: false
   }),
   methods: {
+  },
+  components: {
+    LoginBadge
   }
 }
 </script>
