@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />    
+    <link href="./main.css" rel="stylesheet"/>
+    <title>FuelBurner | Fitness Tracker</title>
+</head>
+<body>
+    <nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <router-link to="/"  class="navbar-item" ><i class="fa fa-fire" aria-hidden="true"></i></router-link>
+          
+      
+          <a role="button" class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="isActive = !isActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu "  :class="{ 'is-active': isActive }">
+          <div class="navbar-start">
+            <router-link to="/"  class="navbar-item" >FuelBurner</router-link>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <router-link to="/signup"  class="button is-success" >
+                  Sign up
+                </router-link>
+                  <router-link to="/login"  class="button is-light" >
+                      Log in
+                  </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar container is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <router-link to="/"  class="navbar-item" ><i class="fa fa-fire" aria-hidden="true"></i></router-link>
     
@@ -19,6 +19,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
+          <router-link to="/feed"  class="navbar-item" >Feed</router-link>
           <router-link to="/signup"  class="button is-success" >
             Sign up
           </router-link>
