@@ -12,9 +12,9 @@ const routes = [
   { path: '/login', name: 'Login', component: Login },
   { path: '/signup', name: 'Signup', component: Signup },
   {
-    path: '/feed',
-    name: 'Feed',
-    component: () => import( '../views/Feed.vue'),
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import( '../views/Dashboard.vue'),
     beforeEnter: checkSessionUser
   },
   

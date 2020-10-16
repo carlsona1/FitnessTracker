@@ -4,6 +4,9 @@
 const session = {
     user : null,
     notifications: [],
+    followers: [],
+    following: [],
+    activities: [],
     addNotification(text, type='info'){
         this.notifications.push({text, type})
     },
