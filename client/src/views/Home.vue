@@ -39,9 +39,6 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .title{
-    margin-top: 20px
-  }
 
 
 </style>

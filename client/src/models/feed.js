@@ -5,7 +5,7 @@
 
 export const posts = [
     {
-        url: '("https://upld.im/images/lFuXa.jpg")',
+        url: '("../assets/ridedata.jpg")',
         message: '',
         owner: {
             name: 'Alex Carlson',
