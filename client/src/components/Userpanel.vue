@@ -33,6 +33,22 @@
     </p>
   </footer>
 
+  <div class="card">
+  <div class="card-content">
+    <div class="content">
+    <p class="has-text-weight-bold">
+      Latest Activity</p>
+      Afternoon Ride - <time datetime="2020-10-6">Oct 6 2020 - 11:09 AM</time>
+    
+    </div>
+  </div>
+  <footer class="card-footer">
+    <div class="container">
+     <span><a href="#" class="card-footer-item">Manage Goals</a></span>
+     </div>
+  </footer>
+</div>
+
 </div>
 
 
@@ -52,5 +68,9 @@ export default {
 .profile {
   width: auto;
   border-radius: 50%;
+}
+
+.container{
+  padding: 10px 0px;
 }
 </style>

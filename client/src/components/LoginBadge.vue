@@ -83,6 +83,5 @@ export default {
 }
 .level-item {
     padding: 0px 9px;
-    margin-top: 10px;
 }
 </style>

@@ -2,7 +2,9 @@
     <div class="page">
         <div class="columns">
             <div class="column is-one-third">
-                <Userpanel />
+                
+                <div class="container mb-1"><Userpanel /></div>
+                <Calendar />
             </div>   
             <div class="column is-one-third">
                 <Post v-for=" (x, i) in posts " 
@@ -20,6 +22,7 @@
 import Sidebar from "@/components/Sidebar";
 import Post from "@/components/Post";
 import Userpanel from "@/components/Userpanel";
+import Calendar from "@/components/Calendar";
 import { posts } from "@/models/feed";
 import session from "@/models/session";
 
@@ -30,7 +33,7 @@ export default {
         }
     },
     components: {
-        Sidebar, Post, Userpanel
+        Sidebar, Post, Userpanel, Calendar
     },
 
     methods: {
@@ -42,7 +45,10 @@ export default {
 </script>
 
 <style>
+    .page{
+        margin-top: 10px;
+    }
     .card{
-        margin-bottom: 30px;
+        margin-bottom: 5px;
     }
 </style>
