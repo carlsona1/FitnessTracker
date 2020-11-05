@@ -10,11 +10,8 @@
     "start": "node server/index.js"
   },
   "dependencies": {
-    "buetify": "^0.1.2",
-    "bulma": "^0.9.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "vue": "^2.6.12"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
