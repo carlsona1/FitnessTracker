@@ -17,7 +17,7 @@ async function getAll(){
 async function get(id){
     const sql = `SELECT * FROM ${PREFIX}Reactions WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
-    if(!rows.length) throw { status: 404, message: "Sorry, this workout does not exist" };
+    if(!rows.length) throw { status: 404, message: "Sorry, this reaction does not exist" };
     return rows[0];
     
 }
