@@ -2,6 +2,9 @@ const express = require('express')
 require('dotenv').config();
 const users = require('./controllers/users');
 const workouts = require('./controllers/workouts');
+const comments = require('./controllers/comments');
+const reactions = require('./controllers/reactions');
+const followers = require('./controllers/followers');
 const app = express()
 const port = process.env.PORT || 3000;
 
@@ -22,6 +25,9 @@ app.get('/', (req, res, next) => {
 })
 app.use('/users', users);
 app.use('/workouts', workouts);
+app.use('/comments', comments);
+app.use('/reactions', reactions);
+app.use('/followers', followers);
 app.use( (err, req, res, next) =>{
     console.log(err);
     res.status(err.status || 500).send( { message: err.message } )

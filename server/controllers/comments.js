@@ -16,13 +16,6 @@ router
         .catch(next);
     })
 
-    /* .get('/met/:id', (req, res, next) => {
-        const id = +req.params.id;
-        if(!id) return next();
-        comments.getMET(id).then(x=> res.send( x ) )
-        .catch(next);
-    }) */
-
     .get('/types', (req, res, next) => {
         comments.allTypes().then(x=> res.send( x ) )
         .catch(next);
@@ -32,34 +25,25 @@ router
         .catch(next);
     })
     .post('/', (req, res, next) => {
-        comments.add(
+        comments.add( 	 	
+            req.body.Text,
+            req.body.Workout_id,
             req.body.Owner_id,
-            req.body.Privacy_Setting,
-            req.body.Start_Time,
-            req.body.End_Time,
-            req.body.Exercise_Type,
-            req.body.Note,
-            req.body.Distance,
-            req.body.Sets,
-            req.body.Reps_Per_Set,
-            req.body.Weight,
-        ).then(newWorkout => {
-            res.send( newWorkout );
+            req.body.media_url,
+            req.body.media_type,
+        ).then(newComment => {
+            res.send( newComment );
         }).catch(next)
     })
    .put('/:id', (req, res, next) => {
         comments.update( req.params.id,
-            req.body.Privacy_Setting,
-            req.body.Start_Time,
-            req.body.End_Time,
-            req.body.Exercise_Type,
-            req.body.Note,
-            req.body.Distance,
-            req.body.Sets,
-            req.body.Reps_Per_Set,
-            req.body.Weight,
-        ).then(newWorkout => {
-            res.send( newWorkout );
+            req.body.Text,
+            req.body.Workout_id,
+            req.body.Owner_id,
+            req.body.media_url,
+            req.body.media_type,
+        ).then(newComment => {
+            res.send( newComment );
         }).catch(next)
     })
     .delete('/:id', (req, res, next) => {

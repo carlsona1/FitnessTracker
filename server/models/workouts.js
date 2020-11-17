@@ -47,7 +47,7 @@ async function add(Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Typ
 
 async function update(id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories){
     const sql = `UPDATE ${PREFIX}Workouts SET ? WHERE id = ?;`;
-    const params = { Privacy_Setting,Start_Time: new Date(Start_Time),End_Time: new Date(End_Time), Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories };
+    const params = {updated_at:new Date(), Privacy_Setting,Start_Time: new Date(Start_Time),End_Time: new Date(End_Time), Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories };
     return await mysql.query(sql, [params, id]);
 }
 
