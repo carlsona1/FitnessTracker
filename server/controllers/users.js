@@ -48,8 +48,8 @@ router
     })
     .post('/login', (req, res, next) => {
         users.login(
-            req.body.email,
-            req.body.password
+            req.body.Email,
+            req.body.Password
         ).then(newUser => {
             res.send( { ...newUser, Password: undefined } );
         }).catch(next)

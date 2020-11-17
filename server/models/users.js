@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const mysql = require('./mysql');
 const cm = require('./ContactMethods');
 
-const PREFIX = process.env.MYSQL_TABLE_PREFIX || 'Fall2020_';
+const PREFIX = process.env.MYSQL_TABLE_PREFIX || '_FITNESS_';
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 8;
 const Types = { ADMIN:5, USER:6 };
 
@@ -20,6 +20,13 @@ async function get(id){
         *,
         (SELECT Value FROM ${PREFIX}ContactMethods Where User_id = ${PREFIX}Users.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = true) as PrimaryEmail
     FROM ${PREFIX}Users WHERE id=?`;
+    const rows = await mysql.query(sql, [id]);
+    if(!rows.length) throw { status: 404, message: "Sorry, there is no such user" };
+    return rows[0];
+}
+
+async function getAtr(id){
+    const sql = `SELECT height, weight FROM ${PREFIX}Users WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
     if(!rows.length) throw { status: 404, message: "Sorry, there is no such user" };
     return rows[0];
@@ -44,14 +51,16 @@ async function getTypes(){
 }
 
 async function add(FirstName, LastName, DOB, Password, User_Type){
+    const hash = await bcrypt.hash(Password, SALT_ROUNDS);
     const sql = `INSERT INTO ${PREFIX}Users (created_at, FirstName, LastName, DOB, Password, User_Type) VALUES ? ;`;
-    const params = [[new Date(), FirstName, LastName, new Date(DOB), Password, User_Type]];
+    const params = [[new Date(), FirstName, LastName, new Date(DOB), hash, User_Type]];
     return await mysql.query(sql, [params]);
 }
 
 async function update(id, FirstName, LastName, DOB, Password, User_Type){
+    const hashed = await bcrypt.hash(Password, SALT_ROUNDS);
     const sql = `UPDATE ${PREFIX}Users SET ? WHERE id = ?;`;
-    const params = { FirstName, LastName, DOB: new Date(DOB), Password, User_Type };
+    const params = {updated_at: new Datetime(), FirstName, LastName, DOB: new Date(DOB), Password: hashed, User_Type };
     return await mysql.query(sql, [params, id]);
 }
 
@@ -64,8 +73,8 @@ async function register(FirstName, LastName, DOB, Password, User_Type, email) {
     if(await cm.exists(email)){
         throw { status: 409, message: 'You already signed up with this email. Please go to Log in.' }
     }
-    const hash = await bcrypt.hash(Password, SALT_ROUNDS);
-    const res = await add(FirstName, LastName, DOB, hash, User_Type);
+    //const hash = await bcrypt.hash(Password, SALT_ROUNDS);
+    const res = await add(FirstName, LastName, DOB, Password, User_Type);
     const emailRes = await cm.add(cm.Types.EMAIL, email, true, true, res.insertId);
     const user = await get(res.insertId);
     return user;
@@ -73,4 +82,4 @@ async function register(FirstName, LastName, DOB, Password, User_Type, email) {
 
 const search = async q => await mysql.query(`SELECT id, FirstName, LastName FROM ${PREFIX}Users WHERE LastName LIKE ? OR FirstName LIKE ?; `, [`%${q}%`, `%${q}%`]);
 
-module.exports = { getAll, get, add, update, remove, getTypes, register, login, search, Types }
+module.exports = { getAll, get, getAtr, add, update, remove, getTypes, register, login, search, Types }
