@@ -17,6 +17,14 @@
     <div class="navbar-start">
       
       <router-link to="/dashboard"  class="navbar-item" >Dashboard</router-link>
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"> Admin </a>
+
+        <div class="navbar-dropdown">
+          <router-link to="/users"  class="navbar-item" >Users</router-link>
+        </div>
+      </div>
     </div>
      
     <div class="navbar-end" >
@@ -33,17 +41,15 @@
 <script>
 import LoginBadge from "@/components/LoginBadge";
 export default {
-  data: ()=> ({
-      isActive: false
+  data: () => ({
+    isActive: false,
   }),
-  methods: {
-  },
+  methods: {},
   components: {
     LoginBadge
-  }
-}
+  },
+};
 </script>
 
 <style>
-
 </style>
