@@ -1,42 +1,42 @@
 /*
 */
-const bcrypt = require('bcrypt');
 const mysql = require('./mysql');
-const user = require('./users');
 
 const PREFIX = process.env.MYSQL_TABLE_PREFIX || '_FITNESS_';
-
+const Emojis = { LOVE: '❤️' }
 
 async function getAll(){
-    //throw { status: 501, message: "This is a fake error" }
-    //await Promise.resolve()
     console.log("Called Get All")
-    return await mysql.query(`SELECT * FROM ${PREFIX}Reactions`);
+    const sql = `SELECT P.*, FirstName, LastName FROM ${PREFIX}Reactions P Join ${PREFIX}Users U ON P.Owner_id = U.id`
+    return await mysql.query(sql);
+}
+
+async function getForWorkout(Workout_id){
+    const sql = `SELECT P.*, FirstName, LastName FROM ${PREFIX}Reactions P Join ${PREFIX}Users U ON P.Owner_id = U.id WHERE P.Workout_id = ?`
+    return await mysql.query(sql, [Workout_id]);
 }
 
 async function get(id){
-    const sql = `SELECT * FROM ${PREFIX}Reactions WHERE id=?`;
+    const sql = `SELECT 
+        *
+    FROM ${PREFIX}Reactions WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
-    if(!rows.length) throw { status: 404, message: "Sorry, this reaction does not exist" };
+    if(!rows.length) throw { status: 404, message: "Sorry, there is no such comment" };
     return rows[0];
-    
 }
 
-
-async function allTypes(){
-    return await mysql.query(`SELECT * FROM ${PREFIX}Exercise_Types`);
-}
-
-async function add(Emoji, Workout_id, Owner_id){
-    const sql = `INSERT INTO ${PREFIX}Reactions (created_at, Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories) VALUES ? ;`;
+async function add( Emoji = Emojis.LOVE, Workout_id, Owner_id){
+    const sql = `INSERT INTO ${PREFIX}Reactions (created_at, Emoji, Workout_id, Owner_id) VALUES ? ;`;
     const params = [[new Date(), Emoji, Workout_id, Owner_id]];
-    return await mysql.query(sql, [params]);
+    const res = await mysql.query(sql, [params]);
+    return get(res.insertId);
 }
 
-async function update(id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories){
+async function update(id, Emoji, Workout_id, Owner_id){
     const sql = `UPDATE ${PREFIX}Reactions SET ? WHERE id = ?;`;
-    const params = {updated_at: new Date(), Emoji, Workout_id, Owner_id };
-    return await mysql.query(sql, [params, id]);
+    const params = { Emoji, Workout_id, Owner_id };
+    const res = await mysql.query(sql, [params, id]);
+    return get(res.insertId);
 }
 
 async function remove(id){
@@ -44,6 +44,6 @@ async function remove(id){
     return await mysql.query(sql, [id]);
 }
 
-const search = async q => await mysql.query(`SELECT * FROM ${PREFIX}Reactions WHERE Emoji LIKE ? OR Owner_id LIKE ? OR Workout_id LIKE ?; `, [`%${q}%`, `%${q}%`, , `%${q}%`]);
+const search = async q => await mysql.query(`SELECT id, Text, Workout_id FROM ${PREFIX}Reactions WHERE Text LIKE ? ; `, [`%${q}%`]);
 
-module.exports = { getAll, get, add, update, remove, allTypes, search}
+module.exports = { getAll, get, add, update, remove, search, getForWorkout }

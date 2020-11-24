@@ -1,45 +1,70 @@
-/*
-*/
-const bcrypt = require('bcrypt');
 const mysql = require('./mysql');
-const user = require('./users');
+const cm = require('./ContactMethods');
+const comments = require('./comments');
 
 const PREFIX = process.env.MYSQL_TABLE_PREFIX || '_FITNESS_';
-
+const MediaTypes = { GIF: 'image/gif', JPG: 'image/jpeg', PNG: 'image/png' };
+const Privacy_Levels = { HIDDEN: 0, ONLY_ME: 1, ONLY_FRIENDS: 2, PUBLIC: 4 };
 const ExTypes = { RUN:1, JOG:2, WALK: 3, BIKE:4, SWIM: 5, HIKE:6 };
 
 async function getAll(){
-    //throw { status: 501, message: "This is a fake error" }
-    //await Promise.resolve()
     console.log("Called Get All")
-    return await mysql.query(`SELECT * FROM ${PREFIX}Workouts`);
+    const sql = `
+        SELECT 
+            W.*, FirstName, LastName,
+            (SELECT Value FROM ${PREFIX}ContactMethods Where User_id = U.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = 1) as PrimaryEmail,
+            (SELECT COUNT(*) FROM ${PREFIX}Reactions WHERE Workout_id = W.id) as Reactions
+        FROM ${PREFIX}Workouts W Join ${PREFIX}Users U ON W.Owner_id = U.id`
+        console.log(sql);
+    return await mysql.query(sql);
+}
+
+async function getByUser(user_id){
+    console.log("Called Get All")
+    const sql = `
+        SELECT 
+            W.*, FirstName, LastName,
+            (SELECT Value FROM ${PREFIX}ContactMethods Where User_id = U.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = 1) as PrimaryEmail,
+            (SELECT COUNT(*) FROM ${PREFIX}Reactions WHERE Workout_id = W.id) as Reactions
+        FROM ${PREFIX}Workouts W Join ${PREFIX}Users U ON W.Owner_id = U.id
+        WHERE W.Owner_id = ?`
+        console.log(sql);
+
+        const workouts = await mysql.query(sql, [user_id]);
+
+        for (const p of workouts) {
+            p.Comments = await comments.getForWorkout(p.id); 
+        }
+
+    return workouts;
+}
+
+async function getFeed(user_id){
+    console.log("Called Get All")
+    const sql = `
+        SELECT 
+            W.*, FirstName, LastName,
+            (SELECT Value FROM ${PREFIX}ContactMethods Where User_id = U.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = 1) as PrimaryEmail,
+            (SELECT COUNT(*) FROM ${PREFIX}Reactions WHERE Workout_id = W.id) as Reactions
+        FROM ${PREFIX}Workouts W Join ${PREFIX}Users U ON W.Owner_id = U.id`
+        console.log(sql);
+    return await mysql.query(sql);
 }
 
 async function get(id){
-    const sql = `SELECT * FROM ${PREFIX}Workouts WHERE id=?`;
+    const sql = `SELECT 
+        *
+    FROM ${PREFIX}Workouts WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
-    if(!rows.length) throw { status: 404, message: "Sorry, this workout does not exist" };
+    if(!rows.length) throw { status: 404, message: "Sorry, there is no such workout" };
     return rows[0];
-    
 }
 
-/* async function getMET(id){
-    const sql = `SELECT Exercise_Type FROM ${PREFIX}Workouts WHERE id=?`;
-    const rows = await mysql.query(sql, [id]);
-    const query = `SELECT Relative_Difficulty FROM ${PREFIX}Exercise_Types WHERE id=?`;
-    const typeRow = await mysql.query(query, [rows[0].id]);
-    if(!rows.length) throw { status: 404, message: "Sorry, this workout does not exist" };
-    return typeRow[0];
-} */
-
-async function allTypes(){
-    return await mysql.query(`SELECT * FROM ${PREFIX}Exercise_Types`);
+async function getTypes(){
+    return await mysql.query(`SELECT id, Name FROM ${PREFIX}Types WHERE Type_id = 3`);
 }
 
 async function add(Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories){
-    //const userAtr = await user.getAtr(Owner_id);
-    //const MET = await this.getMET;
-   //const calories = (End_Time - Start_Time) * MET * 3.5 * userAtr.weight / (200*60) ;
     const sql = `INSERT INTO ${PREFIX}Workouts (created_at, Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories) VALUES ? ;`;
     const params = [[new Date(), Owner_id, Privacy_Setting, new Date(Start_Time), new Date(End_Time), Exercise_Type, Note, Distance, Sets, Reps_Per_Set, Weight, calories]];
     return await mysql.query(sql, [params]);
@@ -56,6 +81,6 @@ async function remove(id){
     return await mysql.query(sql, [id]);
 }
 
-const search = async q => await mysql.query(`SELECT * FROM ${PREFIX}Workouts WHERE MONTH(End_Time) AND DAY(End_Time) LIKE ? OR id LIKE ? OR Exercise_Type LIKE ?; `, [`%${q}%`, `%${q}%`, , `%${q}%`]);
+const search = async q => await mysql.query(`SELECT id, URL, Text, Media_Type FROM ${PREFIX}Workouts WHERE Text LIKE ? ; `, [`%${q}%`]);
 
-module.exports = { getAll, get, add, update, remove, allTypes, search}
+module.exports = { getAll, get, add, update, remove, getTypes, search, MediaTypes, Privacy_Levels, ExTypes, getByUser, getFeed }

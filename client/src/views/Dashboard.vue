@@ -9,6 +9,7 @@
             <div class="column is-one-third">
                 <Post v-for=" (x, i) in posts " 
                     :key="i" 
+                    :i="i"
                     :post="x"/>
             </div>    
             <div class="column is-one-third">
@@ -23,14 +24,17 @@ import Sidebar from "@/components/Sidebar";
 import Post from "@/components/Post";
 import Userpanel from "@/components/Userpanel";
 import Calendar from "@/components/Calendar";
-import { posts } from "@/models/feed";
+import { getPosts } from "@/models/feed";
 import session from "@/models/session";
 
 export default {
     data(){
         return {
-            posts
+            posts: []
         }
+    },
+    async created(){
+        this.posts = await getPosts();
     },
     components: {
         Sidebar, Post, Userpanel, Calendar
@@ -38,7 +42,7 @@ export default {
 
     methods: {
         error(){
-            session.addNotification('Something went wrong.', 'danger')
+            //session.addNotification('Something went wrong.', 'danger')
         }
     }
 }
