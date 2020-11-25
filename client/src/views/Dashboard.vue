@@ -4,9 +4,9 @@
             <div class="column is-one-third">
                 
                 <div class="container mb-1"><Userpanel /></div>
-                <Calendar />
+                <div class="container mb-1"><Calendar /></div>
             </div>   
-            <div class="column is-one-third">
+            <div class="column is-one-half">
                 <Post v-for=" (x, i) in posts " 
                     :key="i" 
                     :i="i"
@@ -50,7 +50,7 @@ export default {
 
 <style>
     .page{
-        margin-top: 10px;
+        margin-top: 30px;
     }
     .card{
         margin-bottom: 5px;

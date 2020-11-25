@@ -31,6 +31,8 @@ export default {
     
 #content{
   margin-top:20px;
+  margin-right: 100px;
+  margin-left: 100px;
 }
 }
 </style>

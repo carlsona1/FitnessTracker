@@ -7,6 +7,7 @@ import 'buefy/dist/buefy.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Buefy);
+Vue.use(require('vue-moment'));
 Vue.config.productionTip = false
 
 new Vue({
