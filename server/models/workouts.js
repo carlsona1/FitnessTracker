@@ -81,6 +81,6 @@ async function remove(id){
     return await mysql.query(sql, [id]);
 }
 
-const search = async q => await mysql.query(`SELECT id, URL, Text, Media_Type FROM ${PREFIX}Workouts WHERE Text LIKE ? ; `, [`%${q}%`]);
+const search = async q => await mysql.query(`SELECT id, URL,Title, Note, Media_Type FROM ${PREFIX}Workouts WHERE Title LIKE ? ; `, [`%${q}%`]);
 
 module.exports = { getAll, get, add, update, remove, getTypes, search, MediaTypes, Privacy_Levels, ExTypes, getByUser, getFeed }

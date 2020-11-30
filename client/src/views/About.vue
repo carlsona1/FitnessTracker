@@ -16,12 +16,12 @@
   <section>
     <div class="container box px-5 py-5">
       <p><span style="margin-left: 40px">
-            We</span> are all brilliant, athletic machines at our core. When we have passion and a goal, we can astound ourselves with our accomplishments. 
+            We</span> are all brilliant, athletic machines at our core. When we have passion and goals, we can astound ourselves with our accomplishments. 
         To better oneself, one must look to push boundaries and set new personal records. Whether we are just beginning our journey or already a master of our own athletic destiny,
         it's important to measure our progress and successes and use them to catapult to new heights.<br><br>
 </p><br>
 
-<div class="has-text-centered pb-3"><h2 class="subtitle has-text-weight-semibold">Meet The Developer</h2></div>
+<div class="has-text-centered pb-5"><h2 class="subtitle has-text-weight-semibold">Meet The Developer</h2></div>
 
 <div class="columns">
   <div class="column"></div>
@@ -36,7 +36,7 @@
 
       <div class="level-item">
           <figure class="image is-128x128">
-          <img class="is-rounded" src="https://u.cubeupload.com/biking_viking/hangincropped.jpg">
+          <img class="is-rounded" src="https://u.cubeupload.com/biking_viking/hangincroppedcopy.jpg">
           </figure>
       </div>
     </nav>

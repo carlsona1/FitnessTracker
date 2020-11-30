@@ -43,13 +43,13 @@ export default {
     methods: {
         login(){
             session.user = {
-                name: 'Alex',
+                name: 'Alex Carlson',
                 profile: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/1934257/5818643/4/large.jpg',
                 followers: '19',
                 following: '21',
                 activities: '209',
             }
-        session.addNotification('Yay! You logged in', 'success')
+        session.addNotification('Success! You logged in', 'success')
         this.$router.push('dashboard') 
         }
 

@@ -13,10 +13,12 @@
           </figure>
         </a>
         <div class="navbar-dropdown">
+          <span class="has-text-black has-text-weight-semibold px-2">{{session.user.name}}</span>
+          <hr class="navbar-divider" />
           <router-link to="/profile"><a class="navbar-item"> Profile </a></router-link>
           <router-link to="/settings"><a class="navbar-item"> Settings </a></router-link>
           <a href="/logout" class="navbar-item"> Logout </a>
-          <hr class="navbar-divider" />
+          
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
   <div class="card-content has-text-centered">
-    <figure class="" style="margin-top: -90px;">
+    <figure class="" style="margin-top: -86px;">
       <img class="profile" src="https://dgalywyr863hv.cloudfront.net/pictures/athletes/1934257/5818643/4/large.jpg">
     </figure>
     <p class="subtitle has-text-weight-bold">

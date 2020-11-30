@@ -3,7 +3,7 @@
   
     <div class="container">
       
-      <h2 class="title is-1 has-text-centered has-text-white-bis" style="padding-top: 375px">Welcome to FuelBurner | Fitness Tracker</h2>
+      <h2 class="title is-1 has-text-centered has-text-white-bis" style="padding-top: 385px">Welcome to FuelBurner | Fitness Tracker</h2>
       <p class="subtitle has-text-centered has-text-white-bis">
         Your new favorite exercise app!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </p>
