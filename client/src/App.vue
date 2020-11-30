@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="has-background-light">
     <Nav />
     <div class="container" id="content">
           <Notifications /> 
@@ -28,11 +28,6 @@ export default {
     .navbar-item.is-hoverable:focus-within .navbar-dropdown {
         display: none;
     }
-    
-#content{
-  margin-top:20px;
-  margin-right: 100px;
-  margin-left: 100px;
-}
+
 }
 </style>

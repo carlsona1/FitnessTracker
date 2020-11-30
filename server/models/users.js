@@ -46,6 +46,8 @@ async function login(email, password){
     return get(rows[0].User_id);
 }
 
+
+
 async function getTypes(){
     return await mysql.query(`SELECT id, Name FROM ${PREFIX}Types WHERE Type_id = 2`);
 }

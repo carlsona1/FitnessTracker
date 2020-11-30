@@ -1,18 +1,18 @@
 <template>
     <div class="page">
         <div class="columns">
-            <div class="column is-one-third">
+            <div class="column is-one-quarter">
                 
-                <div class="container mb-1"><Userpanel /></div>
-                <div class="container mb-1"><Calendar /></div>
+                <div class="container mb-3" style="margin-left: -75px; margin-top: 75px"><Userpanel /></div>
+                <div class="" style="margin-left: -100px"><Calendar /></div>
             </div>   
-            <div class="column is-one-half">
+            <div class="column is-one-half" style="margin-left: 25px">
                 <Post v-for=" (x, i) in posts " 
                     :key="i" 
                     :i="i"
                     :post="x"/>
             </div>    
-            <div class="column is-one-third">
+            <div class="column is-one-quarter" style="margin-left: 25px; margin-right: -75px; margin-top: 25px">
                 <Sidebar />
             </div>   
         </div>
@@ -51,8 +51,11 @@ export default {
 <style>
     .page{
         margin-top: 30px;
+        margin-right: 100px;
+        margin-left: 100px;
     }
     .card{
         margin-bottom: 5px;
     }
+
 </style>

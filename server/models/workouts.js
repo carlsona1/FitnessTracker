@@ -64,15 +64,15 @@ async function getTypes(){
     return await mysql.query(`SELECT id, Name FROM ${PREFIX}Types WHERE Type_id = 3`);
 }
 
-async function add(Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Title, Note, Distance, Sets, Reps_Per_Set, Weight, calories){
-    const sql = `INSERT INTO ${PREFIX}Workouts (created_at, Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Title, Note, Distance, Sets, Reps_Per_Set, Weight, calories) VALUES ? ;`;
-    const params = [[new Date(), Owner_id, Privacy_Setting, new Date(Start_Time), new Date(End_Time), Exercise_Type, Title, Note, Distance, Sets, Reps_Per_Set, Weight, calories]];
+async function add(Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Title, Note, Distance,Elevation, Sets, Reps_Per_Set, Weight){
+    const sql = `INSERT INTO ${PREFIX}Workouts (created_at, Owner_id, Privacy_Setting, Start_Time, End_Time, Exercise_Type, Title, Note, Distance, Elevation, Sets, Reps_Per_Set, Weight) VALUES ? ;`;
+    const params = [[new Date(), Owner_id, Privacy_Setting, new Date(Start_Time), new Date(End_Time), Exercise_Type, Title, Note, Distance, Elevation, Sets, Reps_Per_Set, Weight]];
     return await mysql.query(sql, [params]);
 }
 
-async function update(id, Privacy_Setting, Start_Time, End_Time, Exercise_Type,Title,  Note, Distance, Sets, Reps_Per_Set, Weight, calories){
+async function update(id, Privacy_Setting, Start_Time, End_Time, Exercise_Type,Title,  Note, Distance,Elevation, Sets, Reps_Per_Set, Weight){
     const sql = `UPDATE ${PREFIX}Workouts SET ? WHERE id = ?;`;
-    const params = {updated_at:new Date(), Privacy_Setting,Start_Time: new Date(Start_Time),End_Time: new Date(End_Time), Exercise_Type,Title, Note, Distance, Sets, Reps_Per_Set, Weight, calories };
+    const params = {updated_at:new Date(), Privacy_Setting,Start_Time: new Date(Start_Time),End_Time: new Date(End_Time), Exercise_Type,Title, Note, Distance,Elevation, Sets, Reps_Per_Set, Weight};
     return await mysql.query(sql, [params, id]);
 }
 

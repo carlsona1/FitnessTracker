@@ -1,9 +1,9 @@
 <template>
   <div class="card">
   <div class="card-content has-text-centered">
-    <p class="title">
+    <figure class="" style="margin-top: -90px;">
       <img class="profile" src="https://dgalywyr863hv.cloudfront.net/pictures/athletes/1934257/5818643/4/large.jpg">
-    </p>
+    </figure>
     <p class="subtitle has-text-weight-bold">
       Alex Carlson
     </p>
@@ -13,7 +13,7 @@
       <div class="has-text-centered">
       Followers 
         <br> 
-          <span class="has-text-weight-bold">19</span>
+          <span class="has-text-weight-bold">{{ session.user.followers }}</span>
         </div>
       
     </div>
@@ -21,14 +21,14 @@
       <span class="has-text-centered">
       Following 
         <br> 
-          <span class="has-text-weight-bold">21</span>
+          <span class="has-text-weight-bold">{{ session.user.following }}</span>
       </span>
     </p>
     <p class="card-footer-item">
       <span class="has-text-centered">
       Activities 
         <br> 
-          <span class="has-text-weight-bold">38</span>
+          <span class="has-text-weight-bold">{{ session.user.activities }}</span>
       </span>
     </p>
   </footer>

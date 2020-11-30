@@ -1,5 +1,5 @@
 <template>
-  <nav class="panel">
+  <nav class="panel has-background-white">
   <p class="panel-heading">
     Repositories
   </p>

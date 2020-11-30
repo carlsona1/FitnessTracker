@@ -44,15 +44,15 @@ export default {
         login(){
             session.user = {
                 name: 'Alex',
-                handle: 'carlona1',
                 profile: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/1934257/5818643/4/large.jpg',
                 followers: '19',
                 following: '21',
-                activites: '209',
+                activities: '209',
             }
         session.addNotification('Yay! You logged in', 'success')
         this.$router.push('dashboard') 
         }
+
     }
 }
 </script>

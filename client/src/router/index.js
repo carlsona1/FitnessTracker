@@ -5,6 +5,10 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Users from '../views/Users.vue'
+import Upload from '../views/Upload.vue'
+import AddWorkout from '../views/AddWorkout.vue'
+import Profile from '../views/Profile.vue'
+import Settings from '../views/Settings.vue'
 
 
 
@@ -15,6 +19,10 @@ const routes = [
   { path: '/login', name: 'Login', component: Login },
   { path: '/signup', name: 'Signup', component: Signup },
   { path: '/users', name: 'Users', component: Users },
+  { path: '/upload', name: 'Upload', component: Upload },
+  { path: '/add', name: 'AddWorkout', component: AddWorkout },
+  { path: '/profile', name: 'Profile', component: Profile },
+  { path: '/settings', name: 'Settings', component: Settings },
   {
     path: '/dashboard',
     name: 'Dashboard',

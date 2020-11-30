@@ -49,6 +49,10 @@ app.get('*', (req, res, next) => {
   res.sendFile( filename );
 })
 
+app.get("/logout",(req,res)=>{
+  req.logout();
+  res.redirect("/");
+})
 
 app.use( (err, req, res, next) =>{
     console.log(err);

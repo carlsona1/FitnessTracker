@@ -1,67 +1,44 @@
 <template>
-<div>
-    <div id="LoginBadge">
-        <div class="container">
-        <div class="buttons" v-if="session.user">
-            <div class="level">
-            <div class="media">
-            <div class="media-content">
-                
-                        
-                <div id="userbar"  class="level-item">
-                <b-dropdown :triggers="['hover']" aria-role="list" >
-                <div class="" slot="trigger" slot-scope="{ active }" >
-                    <figure class="image">
-                        <img :src="session.user.profile" alt="Placeholder image" />
-                    </figure>
+  <div id="LoginBadge">
+    <div id="userbar" class="buttons" v-if="session.user">
+      <div class="navbar-item is-hoverable pb-3 pr-5">
+        <a class="">
+        <i class="fas fa-bell"></i>
+        </a>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable pb-2 pr-3">
+        <a class="navbar-link">
+          <figure class="image">
+            <img :src="session.user.profile" alt="Placeholder image" />
+          </figure>
+        </a>
+        <div class="navbar-dropdown">
+          <router-link to="/profile"><a class="navbar-item"> Profile </a></router-link>
+          <router-link to="/settings"><a class="navbar-item"> Settings </a></router-link>
+          <a href="/logout" class="navbar-item"> Logout </a>
+          <hr class="navbar-divider" />
+        </div>
+      </div>
+
+        <div class="navbar-item has-dropdown is-hoverable pr-2">
+            <b-dropdown class="position: is-bottom-left" :triggers="['hover']" aria-role="list">
+                <div class="" slot="trigger" slot-scope="{ active }">
+                    <span style="padding: 10px 0px; color: Tomato"><i class="fas fa-plus-circle"></i></span>
                     <b-icon :icon="active ? 'menu-up' : 'menu-down'"></b-icon>
                 </div>
-                    <b-dropdown-item aria-role="listitem">Profile</b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">Settings</b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">Logout</b-dropdown-item>
-                    </b-dropdown>
-                
-                </div>
-            
-                </div>
-
-                <div class="media-content">
-                    <div id="userbar"  class="level-item has-text-centered">
-                    <div class="col">
-                    <p class="has-text-weight-bold">{{ session.user.name }}</p>
-                    <p class="is-size-7">@{{ session.user.handle }}</p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div id="userbar" class="level-item">
-                <b-dropdown class="position: is-bottom-left" :triggers="['hover']" aria-role="list" style="margin-top: 5px;">
-                    <div slot="trigger" slot-scope="{ active }">
-                        <span style="padding: 10px 0px; color: Tomato"><i class="fas fa-plus-circle"></i></span>
-                        <b-icon :icon="active ? 'menu-up' : 'menu-down'"></b-icon>
-                    </div>
-                    <b-dropdown-item aria-role="listitem">Start Recording</b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">Manually Add Entry</b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">Upload Activity</b-dropdown-item>
-                </b-dropdown>
-                </div>
-                
-
-            </div>
-            </div>
+                <router-link to="/add"><b-dropdown-item aria-role="listitem">Manually Add Entry</b-dropdown-item></router-link>
+                <router-link to="/upload"><b-dropdown-item aria-role="listitem">Upload Activity</b-dropdown-item></router-link>
+            </b-dropdown>
         </div>
+    </div>
 
-
-            <div class="buttons" v-else>
-            <router-link to="/signup" class="button is-success">
-                Sign up
-            </router-link>
-            <router-link to="/login" class="button is-light"> Log in </router-link>
-            </div>
-
+    <div class="buttons" v-else>
+      <router-link to="/signup" class="button is-success">
+        Sign up
+      </router-link>
+      <router-link to="/login" class="button is-light"> Log in </router-link>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -74,14 +51,12 @@ export default {
 </script>
 
 <style>
-.media .image img {
-  width: auto;
+#userbar .image img {
   border-radius: 50%;
+
 }
-.media-content {
-  line-height: .98rem;
+.navbar-item:hover{
+  color: white;
 }
-.level-item {
-    padding: 0px 9px;
-}
+
 </style>
