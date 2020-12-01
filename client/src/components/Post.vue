@@ -4,7 +4,7 @@
       <div class="media-left">
         <figure class="image is-48x48">
           <img
-            :src="`http://localhost:3001/public/profiles/${post.Owner_id}.jpg`"
+            :src="`./server/public/profiles/${post.Owner_id}.jpg`"
             alt="Placeholder image"
           />
         </figure>
