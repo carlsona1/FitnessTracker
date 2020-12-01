@@ -85,7 +85,6 @@
                                 <b-datetimepicker
                                     placeholder=""
                                     icon="calendar-today"
-                                    :locale="locale"
                                     editable>
                                 </b-datetimepicker>
                             </b-field>
@@ -93,7 +92,6 @@
                                 <b-datetimepicker
                                     placeholder=""
                                     icon="calendar-today"
-                                    :locale="locale"
                                     editable>
                                 </b-datetimepicker>
                             </b-field>
@@ -161,10 +159,12 @@
                                 <div class="control">
                                     <div class="select">
                                         <select  v-model="privacy_setting">
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>4</option>
+                                            <option  v-for=" (x, i) in 3 " 
+                                                    :key="i"
+                                                    :i="i"
+                                                    :post="x">
+                                                    {{x}}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -203,15 +203,20 @@ import { addWorkout } from "../models/workouts";
             weight: '',
             url: '',
         }),
-          props: {
-            post: Object,
-        },
         methods: {
             async addWorkout(){
                 const response = await addWorkout(this.privacy_setting, this.starttime, this.endtime, this.exercise_type, this.title,
                  this.note, this.distance, this.elevation, this.sets, this.reps_per_set, this.weight, this.url);
-                this.post.push(response);
-            }
+                this.push(response);
+            },
+            async deleteWorkout(workoutID){
+                const data = await deleteWorkout(workoutID);
+                this.push(data);
+            },
+            async updateWorkout(){
+                const data = await updateWorkout(this.selectToShare,this.updatePrivacySetting,this.updateOtherInfo);
+                this.push(data);
+            },
         },
         computed: {
         sampleFormat() {

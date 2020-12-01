@@ -30,12 +30,19 @@
 </template>
 
 <script>
-import { getList } from "@/models/users";
+import { getUserWorkouts, addWorkout, updateWorkout, deleteWorkout} from "@/models/workouts";
+import { getExercises} from "@/models/exercises";
+import {  getList, getUserID} from "@/models/users";
 import session from "@/models/session";
 export default {
     data(){
         return {
-            list: []
+            list: [],
+            name: [],
+            usersList: [],
+            Following: [],
+            Followers: [],
+            exercises: [],
         }
     },
     async created(){
@@ -45,7 +52,14 @@ export default {
         
     },
     methods: {
-        
+      async followBack(fol){
+        const data = await addFollowing(user,fol,1);
+
+      },
+      async unfollow(unfol){
+        const data = await delFollow(unfol);
+
+      },
     }
 }
 </script>

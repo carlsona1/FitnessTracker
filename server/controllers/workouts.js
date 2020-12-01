@@ -1,4 +1,5 @@
 const express = require('express');
+const users = require('../models/users');
 const workouts = require('../models/workouts');
 const comments = require('../models/comments');
 const reactions = require('../models/reactions');
@@ -72,7 +73,7 @@ router
             res.send( newUser );
         }).catch(next)
     })
-   .put('/update/:id', (req, res, next) => {
+   .put('/:id', (req, res, next) => {
         workouts.update( req.params.id,
             req.body.Owner_id,
             req.body.Privacy_Setting,
@@ -91,7 +92,7 @@ router
             res.send( newUser );
         }).catch(next)
     })
-    .delete('/delete/:id', (req, res, next) => {
+    .delete('/:id', (req, res, next) => {
         workouts.remove(req.params.id).then(msg => {
             res.send( msg );
         }).catch(next)
