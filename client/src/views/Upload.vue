@@ -1,6 +1,6 @@
 <template>
     <section>
-        <section class="hero box" style="background-color: Tomato;">
+        <section class="hero box is-small" style="background-color: Tomato;">
                     <div class="hero-body">
                         <div class="container has-text-centered">
                         <h1 class="title has-text-weight-semi-bold has-text-white">

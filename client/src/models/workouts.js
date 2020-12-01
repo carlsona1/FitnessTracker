@@ -1,0 +1,8 @@
+
+/*
+*/
+import { myFetch } from "./my-fetch.js";
+
+export function addWorkout(owner_id, privacy_setting, starttime, endtime, exercise_type, title, note, distance, elevation, sets, reps_per_set, weight, url ){
+    return myFetch('workouts', { Owner_id: 5, Privacy_Setting: privacy_setting, Start_Time: starttime, End_Time: endtime, Exercise_Type: exercise_type, Title: title, Note: note, Distance: distance, Elevation: elevation, Sets: sets, Reps_Per_Set: reps_per_set, Weight: weight, URL: url })
+}

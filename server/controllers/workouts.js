@@ -56,6 +56,7 @@ router
             req.body.Sets,
             req.body.Reps_Per_Set,
             req.body.Weight,
+            req.body.URL
         ).then(newUser => {
             res.send( newUser );
         }).catch(next)
@@ -74,6 +75,7 @@ router
             req.body.Sets,
             req.body.Reps_Per_Set,
             req.body.Weight,
+            req.body.URL
         ).then(newUser => {
             res.send( newUser );
         }).catch(next)

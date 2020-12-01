@@ -1,5 +1,5 @@
 <template>
-  <div class="has-background-light">
+  <div class="has-background-white">
     <Nav />
     <div class="container" id="content">
           <Notifications /> 
