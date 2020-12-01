@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+<div class="page">
         <div class="columns">
             <div class="column is-one-quarter">
                 
@@ -16,7 +16,7 @@
                 <Sidebar />
             </div>   
         </div>
-    </div>
+</div>
 </template>
 
 <script>

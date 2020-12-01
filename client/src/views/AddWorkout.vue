@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section id="addworkout">
         <section class="hero box is-small" style="background-color: Tomato;">
                     <div class="hero-body">
                         <div class="container has-text-centered">
@@ -61,7 +61,7 @@
                             <label class="label">Sport</label>
                             <div class="control">
                                 <div class="select is-medium">
-                                    <select>
+                                    <select v-model="exercise_type">
                                     <option>Ride      </option>
                                     <option>Run      </option>
                                     <option>Walk      </option>
@@ -75,13 +75,13 @@
                             <div class="field pt-5">
                                 <label class="label">Title</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Give it a name" value="New Workout">
+                                    <input class="input" type="text" placeholder="Give it a name" value="New Workout" v-model="title">
                                 </div>
                             </div>
                         </div>
                     
                         <div class="field ml-5">
-                            <b-field class="" label="Start Time">
+                            <b-field class="" label="Start Time" v-model="starttime">
                                 <b-datetimepicker
                                     placeholder=""
                                     icon="calendar-today"
@@ -89,7 +89,7 @@
                                     editable>
                                 </b-datetimepicker>
                             </b-field>
-                            <b-field class=" pt-5"  label="End Time">
+                            <b-field class=" pt-5"  label="End Time" v-model="endtime">
                                 <b-datetimepicker
                                     placeholder=""
                                     icon="calendar-today"
@@ -106,14 +106,14 @@
                         <div class="field">
                             <label class="label">Distance</label>
                             <div class="control">
-                                <input class="input" type="number" placeholder="Distance in ft">
+                                <input class="input" type="number" placeholder="Distance in mi" v-model="distance">
                             </div>
                         </div>
 
                         <div class="field">
                             <label class="label">Elevation</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success" type="number" placeholder="Elevation in ft">
+                                <input class="input is-success" type="number" placeholder="Elevation in ft"  v-model="elevation">
                             </div>
                         </div>
                     </div>
@@ -123,21 +123,21 @@
                         <div class="field">
                             <label class="label">Sets</label>
                             <div class="control">
-                                <input class="input" type="number" placeholder="Number of sets">
+                                <input class="input" type="number" placeholder="Number of sets"  v-model="sets">
                             </div>
                         </div>
 
                         <div class="field">
                             <label class="label">Reps Per Set</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success" type="number" placeholder="Number of reps">
+                                <input class="input is-success" type="number" placeholder="Number of reps"  v-model="reps_per_set">
                             </div>
                         </div>
 
                         <div class="field">
                             <label class="label">Weight</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success" type="number" placeholder="Weight">
+                                <input class="input is-success" type="number" placeholder="Weight"  v-model="weight">
                             </div>
                         </div>
                     </div>
@@ -145,14 +145,14 @@
                     <div class="field">
                         <label class="label">Note</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="How'd it go? How was the weather? How did you feel?"></textarea>
+                            <textarea class="textarea" placeholder="How'd it go? How was the weather? How did you feel?"  v-model="note"></textarea>
                         </div>
                     </div>
 
                         <div class="field pt-2 pb-5">
                                 <label class="label">URL</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Image or Video URL">
+                                    <input class="input" type="text" placeholder="Image or Video URL"  v-model="url">
                                 </div>
                             </div>
 
@@ -160,10 +160,11 @@
                             <label class="label">Privacy Setting</label>
                                 <div class="control">
                                     <div class="select">
-                                        <select>
-                                        <option>Only You</option>
-                                        <option>Followers</option>
-                                        <option>Everyone</option>
+                                        <select  v-model="privacy_setting">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>4</option>
                                         </select>
                                     </div>
                                 </div>
@@ -173,10 +174,10 @@
 
                         <div class="field is-grouped">
                         <div class="control">
-                            <button class="button is-link has-text-white" style="background-color: Tomato;">Create</button>
+                            <button class="button is-link has-text-white" style="background-color: Tomato;" @click.prevent="addWorkout">Create</button>
                         </div>
-                        <div class="control">
-                            <button class="button is-link">Cancel</button>
+                        <div class="control pl-4 pt-2">
+                            <a class="is-link">Cancel</a>
                         </div>
                         </div>
                 </div>
@@ -201,15 +202,15 @@ import { addWorkout } from "../models/workouts";
             reps_per_set: '',
             weight: '',
             url: '',
-            dropFiles: []
         }),
+          props: {
+            post: Object,
+        },
         methods: {
-            deleteDropFile(index) {
-                this.dropFiles.splice(index, 1)
-            },
             async addWorkout(){
-                const response = await addWorkout(this.post.id, this.commentText);
-                this.post.Comments.push(response);
+                const response = await addWorkout(this.privacy_setting, this.starttime, this.endtime, this.exercise_type, this.title,
+                 this.note, this.distance, this.elevation, this.sets, this.reps_per_set, this.weight, this.url);
+                this.post.push(response);
             }
         },
         computed: {
@@ -229,6 +230,10 @@ import { addWorkout } from "../models/workouts";
     }
 </script>
 <style>
+#addworkout{
+    margin-left: 100px;
+    margin-right: 100px;
+}
 hr.rounded {
   border-top: 1px solid #bbb;
   border-radius: 5px;

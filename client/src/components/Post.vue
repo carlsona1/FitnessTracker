@@ -24,7 +24,7 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Distance</p>
-          <p class="">{{ post.Distance }}</p>
+          <p class="">{{ post.Distance }} mi</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
@@ -39,7 +39,7 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Elev Gain</p>
-          <p class="">{{ post.Elevation }}ft</p>
+          <p class="">{{ post.Elevation }} ft</p>
         </div>
       </div>
     </nav>

@@ -23,12 +23,14 @@ router
         users.search(req.query.q).then(x=> res.send( x ) )
         .catch(next);
     })
-    .post('/', (req, res, next) => {
+    .post('/add', (req, res, next) => {
         users.add(
             req.body.FirstName,
             req.body.LastName, 
             req.body.DOB, 
             req.body.Password, 
+            req.body.weight, 
+            req.body.gender, 
             users.Types.USER, 
         ).then(newUser => {
             res.send( newUser );
@@ -40,6 +42,8 @@ router
             req.body.LastName, 
             req.body.DOB, 
             req.body.Password, 
+            req.body.weight, 
+            req.body.gender, 
             users.Types.USER,
             req.body.Email 
         ).then(newUser => {
@@ -54,18 +58,20 @@ router
             res.send( { ...newUser, Password: undefined } );
         }).catch(next)
     })
-   .put('/:id', (req, res, next) => {
+   .put('/update/:id', (req, res, next) => {
         users.update( req.params.id,
             req.body.FirstName,
             req.body.LastName, 
             req.body.DOB, 
             req.body.Password, 
+            req.body.weight, 
+            req.body.gender, 
             users.Types.USER, 
         ).then(newUser => {
             res.send( newUser );
         }).catch(next)
     })
-    .delete('/:id', (req, res, next) => {
+    .delete('/delete/:id', (req, res, next) => {
         users.remove(req.params.id).then(msg => {
             res.send( msg );
         }).catch(next)

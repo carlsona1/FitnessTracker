@@ -28,14 +28,14 @@
                     <span style="padding: 10px 0px; color: Tomato"><i class="fas fa-plus-circle"></i></span>
                     <b-icon :icon="active ? 'menu-up' : 'menu-down'"></b-icon>
                 </div>
-                <router-link to="/add"><b-dropdown-item aria-role="listitem">Manually Add Entry</b-dropdown-item></router-link>
+                <router-link to="/add"><b-dropdown-item aria-role="listitem">Add Manual Entry</b-dropdown-item></router-link>
                 <router-link to="/upload"><b-dropdown-item aria-role="listitem">Upload Activity</b-dropdown-item></router-link>
             </b-dropdown>
         </div>
     </div>
 
     <div class="buttons" v-else>
-      <router-link to="/signup" class="button is-success">
+      <router-link to="/signup" class="button is-link">
         Sign up
       </router-link>
       <router-link to="/login" class="button is-light"> Log in </router-link>

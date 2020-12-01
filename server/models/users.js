@@ -52,17 +52,17 @@ async function getTypes(){
     return await mysql.query(`SELECT id, Name FROM ${PREFIX}Types WHERE Type_id = 2`);
 }
 
-async function add(FirstName, LastName, DOB, Password, User_Type){
+async function add(FirstName, LastName, DOB, Password, User_Type, weight, gender){
     const hash = await bcrypt.hash(Password, SALT_ROUNDS);
-    const sql = `INSERT INTO ${PREFIX}Users (created_at, FirstName, LastName, DOB, Password, User_Type) VALUES ? ;`;
-    const params = [[new Date(), FirstName, LastName, new Date(DOB), hash, User_Type]];
+    const sql = `INSERT INTO ${PREFIX}Users (created_at, FirstName, LastName, DOB, Password, User_Type, weight, gender) VALUES ? ;`;
+    const params = [[new Date(), FirstName, LastName, new Date(DOB), hash, User_Type, weight, gender]];
     return await mysql.query(sql, [params]);
 }
 
-async function update(id, FirstName, LastName, DOB, Password, User_Type){
+async function update(id, FirstName, LastName, DOB, Password, User_Type, weight, gender){
     const hashed = await bcrypt.hash(Password, SALT_ROUNDS);
     const sql = `UPDATE ${PREFIX}Users SET ? WHERE id = ?;`;
-    const params = {updated_at: new Datetime(), FirstName, LastName, DOB: new Date(DOB), Password: hashed, User_Type };
+    const params = {updated_at: new Datetime(), FirstName, LastName, DOB: new Date(DOB), Password: hashed, User_Type, weight, gender };
     return await mysql.query(sql, [params, id]);
 }
 
@@ -71,12 +71,12 @@ async function remove(id){
     return await mysql.query(sql, [id]);
 }
 
-async function register(FirstName, LastName, DOB, Password, User_Type, email) {
+async function register(FirstName, LastName, DOB, Password, User_Type, email, weight, gender) {
     if(await cm.exists(email)){
         throw { status: 409, message: 'You already signed up with this email. Please go to Log in.' }
     }
     //const hash = await bcrypt.hash(Password, SALT_ROUNDS);
-    const res = await add(FirstName, LastName, DOB, Password, User_Type);
+    const res = await add(FirstName, LastName, DOB, Password, User_Type, weight, gender);
     const emailRes = await cm.add(cm.Types.EMAIL, email, true, true, res.insertId);
     const user = await get(res.insertId);
     return user;

@@ -51,7 +51,7 @@ async function getFeed(user_id){
     return await mysql.query(sql);
 }
 
-async function get(id){
+async function getWorkout(id){
     const sql = `SELECT 
         *
     FROM ${PREFIX}Workouts WHERE id=?`;
@@ -59,6 +59,12 @@ async function get(id){
     if(!rows.length) throw { status: 404, message: "Sorry, there is no such workout" };
     return rows[0];
 }
+
+async function getUserWorkouts(Owner_id){
+    console.log("Get all user workouts:", Owner_id)
+    return await mysql.query(`SELECT * FROM ${PREFIX}Workouts Where Owner_id = ?`,[Owner_id]);
+}
+
 
 async function getTypes(){
     return await mysql.query(`SELECT id, Name FROM ${PREFIX}Types WHERE Type_id = 3`);
@@ -83,4 +89,4 @@ async function remove(id){
 
 const search = async q => await mysql.query(`SELECT id, URL,Title, Note, Media_Type FROM ${PREFIX}Workouts WHERE Title LIKE ? ; `, [`%${q}%`]);
 
-module.exports = { getAll, get, add, update, remove, getTypes, search, MediaTypes, Privacy_Levels, ExTypes, getByUser, getFeed }
+module.exports = { getAll, getWorkout, add, update, remove, getTypes, search, MediaTypes, Privacy_Levels, ExTypes, getByUser, getFeed, getUserWorkouts}

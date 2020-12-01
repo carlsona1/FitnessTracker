@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section id="addworkout">
         <section class="hero box is-small" style="background-color: Tomato;">
                     <div class="hero-body">
                         <div class="container has-text-centered">

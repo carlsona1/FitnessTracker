@@ -22,6 +22,17 @@ router
         workouts.getByUser(id).then(x=> res.send( x ) )
         .catch(next);
     })
+    .get('/:Owner_id', (req, res, next) => {
+        const Owner_id = +req.params.Owner_id;
+        workouts.getUserWorkouts(Owner_id).then(x=> res.send( x.map(workout=> ({ ...workout}) ) ) )
+        .catch(next);
+    })
+    .get('/getworkouts/:id', (req, res, next) => {
+        const id = +req.params.id;
+        if(!id) return next();
+        workouts.getWorkout(id).then(x=> res.send( x ) )
+        .catch(next);
+    })
     .get('/:id/comments', (req, res, next) => {
         const id = +req.params.id;
         if(!id) return next();
@@ -42,7 +53,7 @@ router
         workouts.search(req.query.q).then(x=> res.send( x ) )
         .catch(next);
     })
-    .post('/', (req, res, next) => {
+    .post('/add', (req, res, next) => {
         workouts.add(
             req.body.Owner_id,
             req.body.Privacy_Setting,
@@ -61,7 +72,7 @@ router
             res.send( newUser );
         }).catch(next)
     })
-   .put('/:id', (req, res, next) => {
+   .put('/update/:id', (req, res, next) => {
         workouts.update( req.params.id,
             req.body.Owner_id,
             req.body.Privacy_Setting,
@@ -80,7 +91,7 @@ router
             res.send( newUser );
         }).catch(next)
     })
-    .delete('/:id', (req, res, next) => {
+    .delete('/delete/:id', (req, res, next) => {
         workouts.remove(req.params.id).then(msg => {
             res.send( msg );
         }).catch(next)
