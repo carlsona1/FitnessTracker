@@ -29,8 +29,6 @@ router
             req.body.LastName, 
             req.body.DOB, 
             req.body.Password, 
-            req.body.weight, 
-            req.body.gender, 
             users.Types.USER, 
         ).then(newUser => {
             res.send( newUser );
@@ -42,8 +40,6 @@ router
             req.body.LastName, 
             req.body.DOB, 
             req.body.Password, 
-            req.body.weight, 
-            req.body.gender, 
             users.Types.USER,
             req.body.Email 
         ).then(newUser => {

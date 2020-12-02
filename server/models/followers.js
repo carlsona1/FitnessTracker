@@ -1,6 +1,5 @@
 /*
 */
-const bcrypt = require('bcrypt');
 const mysql = require('./mysql');
 const user = require('./users');
 

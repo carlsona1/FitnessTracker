@@ -1,5 +1,5 @@
 const PREFIX = process.env.MYSQL_TABLE_PREFIX || '_FITNESS_';
-const SALT_ROUNDS = process.env.SALT_ROUNDS || 8;
+
 const Types = { ADMIN:5, USER:6 };
 
 async function getAllExercises(){

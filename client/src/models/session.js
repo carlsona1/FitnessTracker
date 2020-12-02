@@ -15,11 +15,6 @@ const session = {
         this.notifications.splice(i, 1);
     },
 
-
-logout() {
-    this.session.loggedIn = false;
-    this.session.user = null;
-  }
 };
 
 export default session;

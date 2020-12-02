@@ -88,9 +88,10 @@ export default {
   data: ()=>({
     commentText: ''
   }),
-  props: {
-    post: Object,
-  },
+    props: {
+        post: Object,
+        i: Number
+    },
   methods: {
     react(){
     const that = this;

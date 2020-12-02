@@ -10,8 +10,16 @@ export function getUser(id) {
     return myFetch('users/' + id);
 }
 
-export function addUser(FirstName, LastName, DOB, Password, User_Type, Email){
-    return myFetch('users/add', { FirstName: FirstName, LastName: LastName, DOB: DOB, Password:Password, User_Type: User_Type, Email: Email});
+export function register(FirstName, LastName, DOB, Password, Email ) {
+    return myFetch('users/register', { FirstName: FirstName, LastName: LastName, DOB: DOB, Password: Password, Email: Email } );
+}
+
+export function login(email, password){
+    return myFetch('users/login', {Password: password, Email: email } );
+}
+
+export function addUser(FirstName, LastName, DOB, Password, Email){
+    return myFetch('users/add', { FirstName: FirstName, LastName: LastName, DOB: DOB, Password:Password, Email: Email});
 }
 
 export function removeUser(id){

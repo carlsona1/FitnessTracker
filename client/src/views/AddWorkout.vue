@@ -81,15 +81,15 @@
                         </div>
                     
                         <div class="field ml-5">
-                            <b-field class="" label="Start Time" v-model="starttime">
-                                <b-datetimepicker
+                            <b-field class="" label="Start Time">
+                                <b-datetimepicker v-model="starttime"
                                     placeholder=""
                                     icon="calendar-today"
                                     editable>
                                 </b-datetimepicker>
                             </b-field>
-                            <b-field class=" pt-5"  label="End Time" v-model="endtime">
-                                <b-datetimepicker
+                            <b-field class=" pt-5"  label="End Time">
+                                <b-datetimepicker  v-model="endtime"
                                     placeholder=""
                                     icon="calendar-today"
                                     editable>
@@ -111,7 +111,7 @@
                         <div class="field">
                             <label class="label">Elevation</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success" type="number" placeholder="Elevation in ft"  v-model="elevation">
+                                <input class="input" type="number" placeholder="Elevation in ft"  v-model="elevation">
                             </div>
                         </div>
                     </div>
@@ -128,14 +128,14 @@
                         <div class="field">
                             <label class="label">Reps Per Set</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success" type="number" placeholder="Number of reps"  v-model="reps_per_set">
+                                <input class="input" type="number" placeholder="Number of reps"  v-model="reps_per_set">
                             </div>
                         </div>
 
                         <div class="field">
                             <label class="label">Weight</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success" type="number" placeholder="Weight"  v-model="weight">
+                                <input class="input" type="number" placeholder="Weight"  v-model="weight">
                             </div>
                         </div>
                     </div>
@@ -168,10 +168,11 @@
                                         </select>
                                     </div>
                                 </div>
+                                <p class="label pt-2">1 = Only Me <br>2 = Followers<br>3 = Everyone</p>
                         </div>
 
                         <hr class="rounded">
-
+                        
                         <div class="field is-grouped">
                         <div class="control">
                             <button class="button is-link has-text-white" style="background-color: Tomato;" @click.prevent="addWorkout">Create</button>
@@ -187,6 +188,7 @@
 </template>
 
 <script>
+import session from "../models/session";
 import { addWorkout } from "../models/workouts";
     export default {
         data: ()=>({
@@ -207,7 +209,7 @@ import { addWorkout } from "../models/workouts";
             async addWorkout(){
                 const response = await addWorkout(this.privacy_setting, this.starttime, this.endtime, this.exercise_type, this.title,
                  this.note, this.distance, this.elevation, this.sets, this.reps_per_set, this.weight, this.url);
-                this.push(response);
+                session.addNotification("Workout Created", "success");
             },
             async deleteWorkout(workoutID){
                 const data = await deleteWorkout(workoutID);

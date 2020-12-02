@@ -14,7 +14,7 @@
           <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left has-icons-right">
-              <input class="input" type="email" placeholder="Email input"/>
+              <input class="input" type="email" placeholder="email@address.com" v-model="Email"/>
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -24,7 +24,7 @@
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input class="input" type="password" placeholder="*****"/>
+                    <input class="input" type="password" placeholder="*****" v-model="Password"/>
                 </div>
             </div>
 
@@ -53,14 +53,20 @@
 </template>
 
 <script>
+import { login,  } from "@/models/users";
 import session from "@/models/session";
 export default {
+    data: () => ({
+    Password: "",
+    Email: "",
+  }),
   methods: {
-    login() {
+    async login() {
+      const response = await login(this.Password, this.Email);
       session.user = {
+        
         name: "Alex Carlson",
-        profile:
-          "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1934257/5818643/4/large.jpg",
+        profile: "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1934257/5818643/4/large.jpg",
         followers: "19",
         following: "21",
         activities: "209",

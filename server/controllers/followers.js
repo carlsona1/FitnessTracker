@@ -24,7 +24,7 @@ router
         followers.search(req.query.q).then(x=> res.send( x ) )
         .catch(next);
     })
-    .post('/', (req, res, next) => {
+    .post('add/', (req, res, next) => {
         followers.add(
             req.body.Following_id,
             req.body.Follower_id,
@@ -33,7 +33,7 @@ router
             res.send( newFollower );
         }).catch(next)
     })
-   .put('/:id', (req, res, next) => {
+   .put('update/:id', (req, res, next) => {
         followers.update( req.params.id,
             req.body.Following_id,
             req.body.Follower_id,
@@ -42,7 +42,7 @@ router
             res.send( newFollower );
         }).catch(next)
     })
-    .delete('/:id', (req, res, next) => {
+    .delete('delete/:id', (req, res, next) => {
         followers.remove(req.params.id).then(msg => {
             res.send( msg );
         }).catch(next)
