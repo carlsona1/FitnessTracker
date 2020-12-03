@@ -26,9 +26,9 @@ export default {
 
 <style>
     #notifications {
-        padding: 0 30px;
+        padding: 0px;
     }
     .notification {
-        margin: 15px;
+        margin: 0px;
     }
 </style>

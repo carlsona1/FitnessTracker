@@ -7,6 +7,9 @@
                 <div class="" style="margin-left: -100px"><Calendar /></div>
             </div>   
             <div class="column is-one-half" style="margin-left: 25px">
+                <div class="container pb-2">
+                    <Search />
+                </div>  
                 <Post v-for=" (x, i) in posts " 
                     :key="i" 
                     :i="i"
@@ -20,6 +23,7 @@
 </template>
 
 <script>
+import Search from "@/components/Search";
 import Sidebar from "@/components/Sidebar";
 import Post from "@/components/Post";
 import Userpanel from "@/components/Userpanel";
@@ -37,7 +41,7 @@ export default {
         this.posts = await getPosts();
     },
     components: {
-        Sidebar, Post, Userpanel, Calendar
+        Sidebar, Post, Userpanel, Calendar, Search
     },
 
     methods: {

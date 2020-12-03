@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { getUserWorkouts, addWorkout, updateWorkout, deleteWorkout} from "@/models/workouts";
+import { addWorkout, updateWorkout, deleteWorkout} from "@/models/workouts";
 import { getExercises} from "@/models/exercises";
 import {  getList, getUserID} from "@/models/users";
 import session from "@/models/session";

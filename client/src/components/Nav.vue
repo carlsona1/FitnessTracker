@@ -57,21 +57,33 @@
       </div>
     </div>
 
-    <b-modal v-model="isCardModalActive" :width="640" scroll="keep">
+    <b-modal class="pb-5" v-model="isCardModalActive" :width="640" scroll="keep">
+      <div class="content">
       <div class="card">
         <div class="card-content">
-          <div class="content">
-            <div class="select control is-medium pb-2">
-              <select>
-                <option>Workouts</option>
-                <option>Users</option>
-              </select>
-            </div>
+          <section>
+          <div class="field">
             <button class="button is-pulled-right"><i class="fas fa-search"></i></button>
-            <div class="control">
-              <input class="input is-focused is-medium" type="text" placeholder="Search"/>
-            </div>
             
+                <p class="content"><b>Selected:</b> {{ selected }}</p>
+                <b-field label="Search Workouts">
+                    <b-autocomplete
+                        rounded
+                        v-model="name"
+                        :data="filteredDataArray"
+                        placeholder="e.g. jQuery"
+                        icon="magnify"
+                        clearable
+                        @select="option => selected = option">
+                        <template slot="empty">No results found</template>
+                    </b-autocomplete>
+                </b-field>
+            
+          </div>
+          </section>
+            <div class="row pb-5">
+              <div class="container pb-5"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -80,18 +92,50 @@
 </template>
 
 <script>
+import {  search } from "@/models/workouts";
 import LoginBadge from "@/components/LoginBadge";
-export default {
-  data: () => ({
-    isActive: false,
-    isCardModalActive: false,
-  }),
-  methods: {},
-  components: {
-    LoginBadge,
-  },
-};
-</script>
+ export default {
+        data() {
+            return {
+                data: [
+                    'Angular',
+                    'Angular 2',
+                    'Aurelia',
+                    'Backbone',
+                    'Ember',
+                    'jQuery',
+                    'Meteor',
+                    'Node.js',
+                    'Polymer',
+                    'React',
+                    'RxJS',
+                    'Vue.js'
+                ],
+                name: '',
+                selected: null,
+                isActive: false,
+                isCardModalActive: false,
+            }
+        },
+        computed: {
+            filteredDataArray() {
+                return this.data.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.name.toLowerCase()) >= 0
+                })
+            }
+        },
+        methods: {
 
+        },
+        components: {
+        LoginBadge,
+        },
+    }
+
+</script>
+   
 <style>
 </style>

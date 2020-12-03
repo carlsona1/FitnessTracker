@@ -12,13 +12,13 @@
           <form>
             <div class="label">Name</div>
             <div class="field is-grouped pt-2">
-              <input class="input is-rounded mr-2" size="10" type="text" placeholder="First" v-model="FirstName"/>
-              <input class="input is-rounded" size="10" type="text" placeholder="Last" v-model="LastName"/>
+              <input class="input is-rounded mr-2" size="8" type="text" placeholder="First" v-model="FirstName"/>
+              <input class="input is-rounded" size="8" type="text" placeholder="Last" v-model="LastName"/>
             </div>
             <div class="field pt-2">
               <label class="label pt-2 pr-4">Birthdate </label>
               <b-datepicker v-model="DOB"
-                placeholder=""
+                placeholder="MM/DD/YYYY"
                 icon="calendar-today"
                 :locale="locale"
                 editable

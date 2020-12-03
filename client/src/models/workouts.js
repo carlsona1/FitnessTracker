@@ -23,3 +23,7 @@ export function updateWorkout(id, privacy_setting, starttime, endtime, exercise_
 export function deleteWorkout(id){
     return myFetch('workouts/delete/' + id);
 }
+
+export function search(Title){
+    return myFetch('workouts/search?q=' + title);
+}

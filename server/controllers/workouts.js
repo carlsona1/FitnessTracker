@@ -23,11 +23,6 @@ router
         workouts.getByUser(id).then(x=> res.send( x ) )
         .catch(next);
     })
-    .get('/:Owner_id', (req, res, next) => {
-        const Owner_id = +req.params.Owner_id;
-        workouts.getUserWorkouts(Owner_id).then(x=> res.send( x.map(workout=> ({ ...workout}) ) ) )
-        .catch(next);
-    })
     .get('/getworkout/:id', (req, res, next) => {
         const id = +req.params.id;
         if(!id) return next();

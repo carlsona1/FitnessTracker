@@ -1,46 +1,56 @@
 <template>
-  <b-modal v-model="isCardModalActive" :width="640" scroll="keep">
-            <div class="card">
-                <div class="card-image">
-                    <figure class="image is-4by3">
-                        <img src="/static/img/placeholder-1280x960.png" alt="Image">
-                    </figure>
-                </div>
-                <div class="card-content">
-                    <div class="media">
-                        <div class="media-left">
-                            <figure class="image is-48x48">
-                                <img src="/static/img/placeholder-1280x960.png" alt="Image">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <p class="title is-4">John Smith</p>
-                            <p class="subtitle is-6">@johnsmith</p>
-                        </div>
-                    </div>
+    <section>
+        <div class="box">
+            <div class="field">
+        <b-field label="Search Workouts">
+            <b-autocomplete
+                rounded
+                v-model="field"
+                :data="filteredDataArray"
+                placeholder="Search"
+                icon="magnify"
+                clearable
+                @select="option => selected = option">
+                <template slot="empty">No results found</template>
+            </b-autocomplete>
+        </b-field>
 
-                    <div class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                        <a>#css</a> <a>#responsive</a>
-                        <br>
-                        <small>11:09 PM - 1 Jan 2016</small>
-                    </div>
-                </div>
-            </div>
-        </b-modal>
+        </div>
+        </div>
+    </section>
+    
 </template>
 
 <script>
-export default {
+import {  search, getWorkouts } from "@/models/workouts";
+import {  getPosts } from "@/models/feed";
+    export default {
         data() {
             return {
-                isCardModalActive: false
+                data: [],
+                field:'',
+                selected: null
             }
-        }
+        },
+        methods: {
+
+            async getWorkouts(){
+                this.data = await getWorkouts(); 
+            },
+        },
+        computed: {
+            filteredDataArray() {
+                return this.data.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.field.toLowerCase()) >= 0
+                })
+            }
+        },
+         beforeMount(){
+            this.getWorkouts()
+        },
+        
     }
 </script>
-
-<style>
-
-</style>
